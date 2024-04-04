@@ -11,7 +11,7 @@ Clone the repository:
 
 ```
 git clone https://github.com/Arroyave03/ALPR-Parking.git
-cd 
+cd ALPR-Parking
 ```
 
 Install dependencies:
