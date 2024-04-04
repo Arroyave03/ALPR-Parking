@@ -1,6 +1,6 @@
 <h1 align="center">
   <a>
-    Parking International Administration React Powered Integral System
+    ALPR
   </a>
 </h1>
 
@@ -10,8 +10,8 @@
 Clone the repository:
 
 ```
-git clone https://github.com/Arroyave03/PIARPIS.git
-cd piarpis
+git clone https://github.com/Arroyave03/ALPR-Parking.git
+cd 
 ```
 
 Install dependencies:
