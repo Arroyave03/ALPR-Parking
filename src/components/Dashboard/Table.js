@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import './Dashboard.css';
+import { useTranslation } from 'react-i18next';
 
 const Table = ({ employees, handleEdit, handleDelete }) => {
+  const { t } = useTranslation();
+
   employees.forEach((employee, i) => {
     employee.id = i + 1;
   });
@@ -20,14 +24,14 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
       <table className="striped-table">
         <thead>
           <tr>
-            <th>No.</th>
-            <th>Nombre</th>
-            <th>Placa</th>
-            <th>Apto</th>
-            <th>Modelo</th>
-            <th>Tiempo estadía</th>
+            <th>{t('dashboard.number')}</th>
+            <th>{t('dashboard.name')}</th>
+            <th>{t('license_plate')}</th>
+            <th>{t('house')}</th>
+            <th>{t('car_model')}</th>
+            <th>{t('date')}</th>
             <th colSpan={2} className="text-center">
-              Acciones Disponibles
+              {t('actions')}
             </th>
           </tr>
         </thead>
@@ -46,7 +50,7 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
                     onClick={() => handleEdit(employee.id)}
                     className="button muted-button"
                   >
-                    Editar
+                    {t('dashboard.edit')}
                   </button>
                 </td>
                 <td className="text-left">
@@ -54,14 +58,14 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
                     onClick={() => handleDelete(employee.id)}
                     className="button muted-button"
                   >
-                    Eliminar
+                    {t('dashboard.delete_confirm_button')}
                   </button>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={7}>No Usuarios</td>
+              <td colSpan={7}>{t('dashboard.no_users')}</td>
             </tr>
           )}
         </tbody>

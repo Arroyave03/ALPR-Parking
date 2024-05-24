@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
 
 const Edit = ({ employees, selectedEmployee, setEmployees, setIsEditing }) => {
   const id = selectedEmployee.id;
-
-  const [firstName, setFirstName] = useState(selectedEmployee.firstName);
-  const [lastName, setLastName] = useState(selectedEmployee.lastName);
-  const [email, setEmail] = useState(selectedEmployee.email);
-  const [salary, setSalary] = useState(selectedEmployee.salary);
-  const [date, setDate] = useState(selectedEmployee.date);
+  const { t } = useTranslation();
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [salary, setSalary] = useState(null);
+  const [date, setDate] = useState(null);
 
   const handleUpdate = e => {
     e.preventDefault();
@@ -16,8 +17,8 @@ const Edit = ({ employees, selectedEmployee, setEmployees, setIsEditing }) => {
     if (!firstName || !lastName || !email || !salary || !date) {
       return Swal.fire({
         icon: 'error',
-        title: 'Error!',
-        text: 'Debe llenar todos los campos.',
+        title: t('error'),
+        text: t('all_fields_required'),
         showConfirmButton: true,
       });
     }
@@ -45,67 +46,71 @@ const Edit = ({ employees, selectedEmployee, setEmployees, setIsEditing }) => {
     Swal.fire({
       icon: 'success',
       title: 'Actualizado!',
-      text: `${employee.firstName}, placa: ${employee.lastName}, ha sido actualizado.`,
+      text: `${employee.firstName}, ${t('license_plate')}: ${employee.lastName}, ${t('has_been_updated')}.`,
       showConfirmButton: false,
       timer: 1500,
     });
   };
 
   return (
-    <div className="small-container">
-      <form onSubmit={handleUpdate}>
-        <h1>Editar vehículo</h1>
-        <label htmlFor="firstName">Nombre</label>
-        <input
-          id="firstName"
-          type="text"
-          name="firstName"
-          value={firstName}
-          onChange={e => setFirstName(e.target.value)}
-        />
-        <label htmlFor="lastName">Placa</label>
-        <input
-          id="lastName"
-          type="text"
-          name="lastName"
-          value={lastName}
-          onChange={e => setLastName(e.target.value)}
-        />
-        <label htmlFor="email">Apto</label>
-        <input
-          id="email"
-          type="text"
-          name="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <label htmlFor="salary">Modelo</label>
-        <input
-          id="salary"
-          type="text"
-          name="salary"
-          value={salary}
-          onChange={e => setSalary(e.target.value)}
-        />
-        <label htmlFor="date">Tiempo estadía</label>
-        <input
-          id="date"
-          type="text"
-          name="date"
-          value={date}
-          onChange={e => setDate(e.target.value)}
-        />
-        <div style={{ marginTop: '30px' }}>
-          <input type="submit" value="Actualizar" />
-          <input
-            style={{ marginLeft: '12px' }}
-            className="muted-button"
-            type="button"
-            value="Cancelar"
-            onClick={() => setIsEditing(false)}
-          />
+    <div className='edit-screen'>
+      <div classname="edit-container">
+        <div className="edit-box">
+          <form onSubmit={handleUpdate}>
+            <h1>{t('edit_vehicle')}</h1>
+            <label htmlFor="firstName">{t('name')}</label>
+            <input
+              id="firstName"
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+            />
+            <label htmlFor="lastName">{t('license_plate')}</label>
+            <input
+              id="lastName"
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+            />
+            <label htmlFor="email">{t('house')}</label>
+            <input
+              id="email"
+              type="number"
+              name="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <label htmlFor="salary">{t('car_model')}</label>
+            <input
+              id="salary"
+              type="date"
+              name="salary"
+              value={salary}
+              onChange={e => setSalary(e.target.value)}
+            />
+            <label htmlFor="date">{t('date')}</label>
+            <input
+              id="date"
+              type="date"
+              name="date"
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            />
+            <div style={{ marginTop: '30px' }}>
+              <input type="submit" value={t('update')} />
+              <input
+                style={{ marginLeft: '12px' }}
+                className="muted-button"
+                type="submit"
+                value={t('cancel')}
+                onClick={() => setIsEditing(false)}
+              />
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

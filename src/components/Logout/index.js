@@ -1,14 +1,17 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import './Logout.css';
+import { useTranslation } from 'react-i18next';
 
 const Logout = ({ setIsAuthenticated }) => {
+  const { t } = useTranslation();
   const handleLogout = () => {
     Swal.fire({
       icon: 'question',
-      title: 'Cerrar sesión',
-      text: '¿Seguro que desea salir?',
+      title: t('logout.confirm_title'),
+      text: t('logout.confirm_text'),
       showCancelButton: true,
-      confirmButtonText: 'Si',
+      confirmButtonText: t('logout.confirm_button'),
     }).then(result => {
       if (result.value) {
         Swal.fire({
@@ -32,7 +35,7 @@ const Logout = ({ setIsAuthenticated }) => {
       className="muted-button"
       onClick={handleLogout}
     >
-      Cerrar sesión
+      {t('logout.button_text')}
     </button>
   );
 };

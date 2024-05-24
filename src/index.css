@@ -379,7 +379,8 @@ html {
 
 body {
   color: #404040;
-  background: white;
+  background-color: #ffffff;
+  background-image: linear-gradient(to bottom, #ffffff, #9b97dd);
   font-size: 1rem;
 }
 
@@ -579,6 +580,7 @@ dd {
 .small-container {
   max-width: 800px;
 }
+
 
 .custom-container {
   max-width: 1200px;
